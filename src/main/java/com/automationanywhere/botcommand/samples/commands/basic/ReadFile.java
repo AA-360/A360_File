@@ -53,7 +53,6 @@ public class ReadFile {
     ) {
 
         File fl = new File();
-
         List<String> buffer = fl.readFile(file);
 
         String joined = "";

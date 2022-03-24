@@ -29,6 +29,7 @@ public class File {
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(new FileInputStream(file),"UTF-8"));
 
+
             String content = Files.readString(Paths.get(file), StandardCharsets.UTF_8);
             for(String line: content.split("\n")){
                 buffer.add(this.removeUTF8BOM(line));

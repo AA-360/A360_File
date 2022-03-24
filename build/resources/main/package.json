@@ -4,10 +4,64 @@
     "description": "",
     "group": "com.automationanywhere",
     "artifactName": "File_Uts",
-    "packageVersion": "1.1-20210708-111156",
-    "codeVersion": "1.1-20210708-111156",
+    "packageVersion": "1.2-20210715-192625",
+    "codeVersion": "1.2-20210715-192625",
     "author": "",
     "commands": [
+        {
+            "name": "Base64ToFile",
+            "label": "Base64ToFile",
+            "description": "Esta action converte Base64 para arquivos",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.Base64ToFileCommand",
+            "icon": "pkg.svg",
+            "attributes": [
+                {
+                    "name": "Base64",
+                    "label": "Base64",
+                    "type": "TEXT",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "OutputAddress",
+                    "label": "Output File",
+                    "description": "C:/folder/file.txt",
+                    "type": "TEXT",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "FileToBase64",
+            "label": "FileToBase64",
+            "description": "Esta action converte arquivos para Base64",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.FileToBase64Command",
+            "icon": "pkg.svg",
+            "returnType": "STRING",
+            "returnSubtype": "UNDEFINED",
+            "returnLabel": "",
+            "returnRequired": true,
+            "returnDescription": "String Base64",
+            "attributes": [
+                {
+                    "name": "Arquivo",
+                    "label": "Arquivo",
+                    "type": "FILE",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                }
+            ]
+        },
         {
             "name": "GetFilesFromPath",
             "label": "GetFilesFromPath",
