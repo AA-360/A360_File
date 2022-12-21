@@ -4,8 +4,8 @@
     "description": "",
     "group": "com.automationanywhere",
     "artifactName": "File_Uts",
-    "packageVersion": "1.2-20210715-192625",
-    "codeVersion": "1.2-20210715-192625",
+    "packageVersion": "1.4-20220907-121825",
+    "codeVersion": "1.4-20220907-121825",
     "author": "",
     "commands": [
         {
@@ -33,6 +33,29 @@
                     "rules": [
                         {
                             "name": "NOT_EMPTY"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CreateDirectories",
+            "label": "CreateDirectories",
+            "description": "Creates directories\n This action creates a folder or a full address of a folder:\n Sample: \n\tC:\\Temp\\test1\\test2\n\tHere the action will make sure all folders exists an create all of them.",
+            "nodeLabel": "Create directories {{address}}",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.CreateDirectoriesCommand",
+            "icon": "pkg.svg",
+            "attributes": [
+                {
+                    "name": "address",
+                    "label": "Address:",
+                    "type": "TEXT",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        },
+                        {
+                            "name": "FILE_FOLDER"
                         }
                     ]
                 }
