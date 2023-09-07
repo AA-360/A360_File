@@ -4,8 +4,8 @@
     "description": "",
     "group": "com.automationanywhere",
     "artifactName": "File_Uts",
-    "packageVersion": "1.4-20220907-121825",
-    "codeVersion": "1.4-20220907-121825",
+    "packageVersion": "2.0-20230901-191713",
+    "codeVersion": "2.0-20230901-191713",
     "author": "",
     "commands": [
         {
@@ -86,13 +86,31 @@
             ]
         },
         {
+            "name": "GetFileDetails",
+            "label": "GetFileDetails",
+            "description": "Get File Details",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.GetFileFolderDetailsCommand",
+            "icon": "pkg.svg",
+            "returnType": "DICTIONARY",
+            "returnSubtype": "UNDEFINED",
+            "returnLabel": "",
+            "returnRequired": true,
+            "attributes": [
+                {
+                    "name": "file",
+                    "label": "Path",
+                    "type": "FILE"
+                }
+            ]
+        },
+        {
             "name": "GetFilesFromPath",
             "label": "GetFilesFromPath",
             "description": "Esta action captura os arquivos de uma pasta",
             "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.GetFilesFromPathCommand",
             "icon": "pkg.svg",
-            "returnType": "LIST",
-            "returnSubtype": "STRING",
+            "returnType": "TABLE",
+            "returnSubtype": "UNDEFINED",
             "returnLabel": "",
             "returnRequired": true,
             "attributes": [
@@ -114,12 +132,6 @@
                         "string": ".*",
                         "type": "STRING"
                     }
-                },
-                {
-                    "name": "fullName",
-                    "label": "Nome completo do arquivo:",
-                    "description": "Nome completo do arquivo:",
-                    "type": "BOOLEAN"
                 }
             ]
         },

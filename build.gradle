@@ -30,7 +30,7 @@ configure(allprojects){
 		testNgVersion = '6.14.3'
 		loggerVersion = '2.10.0'
 		jnaVersion = '5.3.1'
-		version '1.4'
+		version '2.0'
 	}
 	group "$groupName"
 
@@ -99,12 +99,12 @@ configure(allprojects){
 		// https://mvnrepository.com/artifact/net.java.dev.jna/jna
 		implementation group: 'net.java.dev.jna', name: 'jna', version: '5.8.0'
 		implementation 'net.java.dev.jna:jna-platform:5.5.0'
-
 		compile group: 'org.apache.activemq', name: 'activemq-all', version: '5.15.0'
 		compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.7.0'
 		compile group: 'com.h2database', name: 'h2', version: '1.4.200'
 
 		//Add below dependencies to compile the samples
+		//implementation name: 'triggerlistener', version: '2+'
 
 		//implementation group: 'net.java.dev.jna', name: 'jna-platform', version: "$jnaVersion"	
 		//compile group: 'org.springframework', name: 'spring-jms', version: '5.0.2.RELEASE'

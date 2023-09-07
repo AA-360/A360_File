@@ -13,8 +13,13 @@
 package com.automationanywhere.botcommand.samples.commands.basic;
 
 import com.automationanywhere.botcommand.data.Value;
+import com.automationanywhere.botcommand.data.impl.DictionaryValue;
 import com.automationanywhere.botcommand.data.impl.ListValue;
 import com.automationanywhere.botcommand.data.impl.StringValue;
+import com.automationanywhere.botcommand.data.impl.TableValue;
+import com.automationanywhere.botcommand.data.model.Schema;
+import com.automationanywhere.botcommand.data.model.table.Row;
+import com.automationanywhere.botcommand.data.model.table.Table;
 import com.automationanywhere.botcommand.exception.BotCommandException;
 import com.automationanywhere.commandsdk.annotations.*;
 import com.automationanywhere.commandsdk.annotations.rules.NotEmpty;
@@ -22,62 +27,104 @@ import com.automationanywhere.commandsdk.model.DataType;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributeView;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.*;
 
 import static com.automationanywhere.commandsdk.model.AttributeType.BOOLEAN;
 import static com.automationanywhere.commandsdk.model.AttributeType.TEXT;
-import static com.automationanywhere.commandsdk.model.DataType.LIST;
-import static com.automationanywhere.commandsdk.model.DataType.STRING;
+import static com.automationanywhere.commandsdk.model.DataType.*;
 
 @BotCommand
 @CommandPkg(label = "GetFilesFromPath",
-        description = "Esta action captura os arquivos de uma pasta", icon = "pkg.svg", name = "GetFilesFromPath",
-        return_description = "", return_type = LIST,return_sub_type = STRING,  return_required = true)
+        description = "Esta action captura os arquivos de uma pasta",
+        icon = "pkg.svg",
+        name = "GetFilesFromPath",
+        return_description = "",
+        return_type = TABLE,
+        return_required = true
+)
 
 
 public class GetFilesFromPath {
 
     @Execute
-    public ListValue<String> action(
+    public TableValue action(
             @Idx(index = "1", type = TEXT)
             @Pkg(label = "Diretório")
             @NotEmpty String diretorio,
             @Idx(index = "2", type = TEXT)
             @Pkg(label = "Regex",default_value = ".*", default_value_type = STRING)
-            String pattern,
-            @Idx(index = "3", type = BOOLEAN)
-            @Pkg(label = "Nome completo do arquivo:", description = "Nome completo do arquivo:",default_value = "", default_value_type = DataType.BOOLEAN)
-            Boolean fullName
+            String pattern
     ) {
-
+        List<Schema> schemas = getHeaders();
+        List<Row> listRows= new ArrayList<>();
 
         File folder = new File(diretorio);
         File[] listOfFiles = folder.listFiles();
 
-        ListValue<String> returnvalue = new ListValue<String>();
-        List<Value> files = new ArrayList<Value>();
-
         for (File file : listOfFiles) {
+
             if (file.isFile()) {
                 if(file.getName().matches(pattern)) {
-                    if(fullName)
-                        try {
-                            files.add(new StringValue(file.getCanonicalPath()));
-                        }catch (IOException e) {
-                            throw new BotCommandException(e.getMessage().toString());
-                        }
-                    else
-                        files.add(new StringValue(file.getName()));
+                    listRows.add(getDetails(file));
                 }
             }
         }
 
-        returnvalue.set(files);
-        return returnvalue;
+        Table OUTPUT = new Table(schemas,listRows);
+
+        return new TableValue(OUTPUT);
 
 
     }
-    
 
+    Row getDetails(File file){
+        try{
+            List<Value> rwValue = new ArrayList<>();
+
+
+            Path p = Paths.get(file.getAbsolutePath());
+            BasicFileAttributes view = Files.getFileAttributeView(p, BasicFileAttributeView.class).readAttributes();
+
+            rwValue.add(new StringValue(file.getName()));
+            rwValue.add(new StringValue(file.getCanonicalPath()));
+            rwValue.add(new StringValue(view.creationTime().toString()));
+            rwValue.add(new StringValue(view.lastAccessTime().toString()));
+            rwValue.add(new StringValue(view.lastModifiedTime().toString()));
+            rwValue.add(new StringValue(String.valueOf(view.isDirectory())));
+            rwValue.add(new StringValue(String.valueOf(view.isOther())));
+            rwValue.add(new StringValue(String.valueOf(view.isRegularFile())));
+            rwValue.add(new StringValue(String.valueOf(view.isSymbolicLink())));
+            rwValue.add(new StringValue(String.valueOf(view.size())));
+
+            return new Row(rwValue);
+        }
+        catch(IOException e){
+            throw new BotCommandException(e.getMessage());
+        }
+
+    }
+
+    List<Schema> getHeaders(){
+        List<Schema> schemas = new ArrayList<>();
+
+        //================== CREATE SCHEMAS ===============
+        Schema t = new Schema("id");
+        schemas.add(new Schema("id"));
+        schemas.add(new Schema("fileName"));
+        schemas.add(new Schema("fileFullName"));
+        schemas.add(new Schema("creationTime"));
+        schemas.add(new Schema("lastAccessTime"));
+        schemas.add(new Schema("lastModifiedTime"));
+        schemas.add(new Schema("isDirectory"));
+        schemas.add(new Schema("isOther"));
+        schemas.add(new Schema("isRegularFile"));
+        schemas.add(new Schema("isSymbolicLink"));
+        schemas.add(new Schema("size"));
+        return schemas;
+    }
 }

@@ -6,7 +6,6 @@ import com.automationanywhere.botcommand.data.Value;
 import com.automationanywhere.botcommand.exception.BotCommandException;
 import com.automationanywhere.commandsdk.i18n.Messages;
 import com.automationanywhere.commandsdk.i18n.MessagesFactory;
-import java.lang.Boolean;
 import java.lang.ClassCastException;
 import java.lang.Deprecated;
 import java.lang.Object;
@@ -52,15 +51,8 @@ public final class GetFilesFromPathCommand implements BotCommand {
       }
     }
 
-    if(parameters.containsKey("fullName") && parameters.get("fullName") != null && parameters.get("fullName").get() != null) {
-      convertedParameters.put("fullName", parameters.get("fullName").get());
-      if(convertedParameters.get("fullName") !=null && !(convertedParameters.get("fullName") instanceof Boolean)) {
-        throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","fullName", "Boolean", parameters.get("fullName").get().getClass().getSimpleName()));
-      }
-    }
-
     try {
-      Optional<Value> result =  Optional.ofNullable(command.action((String)convertedParameters.get("diretorio"),(String)convertedParameters.get("pattern"),(Boolean)convertedParameters.get("fullName")));
+      Optional<Value> result =  Optional.ofNullable(command.action((String)convertedParameters.get("diretorio"),(String)convertedParameters.get("pattern")));
       return logger.traceExit(result);
     }
     catch (ClassCastException e) {
