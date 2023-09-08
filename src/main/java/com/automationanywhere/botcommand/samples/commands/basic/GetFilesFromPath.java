@@ -113,8 +113,6 @@ public class GetFilesFromPath {
         List<Schema> schemas = new ArrayList<>();
 
         //================== CREATE SCHEMAS ===============
-        Schema t = new Schema("id");
-        schemas.add(new Schema("id"));
         schemas.add(new Schema("fileName"));
         schemas.add(new Schema("fileFullName"));
         schemas.add(new Schema("creationTime"));

@@ -4,8 +4,8 @@
     "description": "",
     "group": "com.automationanywhere",
     "artifactName": "File_Uts",
-    "packageVersion": "2.0-20230901-191713",
-    "codeVersion": "2.0-20230901-191713",
+    "packageVersion": "2.2-20230908-131256",
+    "codeVersion": "2.2-20230908-131256",
     "author": "",
     "commands": [
         {
