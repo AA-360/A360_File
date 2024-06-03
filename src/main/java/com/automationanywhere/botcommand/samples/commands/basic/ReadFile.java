@@ -62,6 +62,7 @@ public class ReadFile {
 
         joined = joined.substring(0, joined.length() - 1);
 
+
         return new StringValue(joined);
     }
 }
