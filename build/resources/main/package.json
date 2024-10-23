@@ -4,8 +4,8 @@
     "description": "",
     "group": "com.automationanywhere",
     "artifactName": "File_Uts",
-    "packageVersion": "2.2-20230908-131256",
-    "codeVersion": "2.2-20230908-131256",
+    "packageVersion": "2.3-20241023-155810",
+    "codeVersion": "2.3-20241023-155810",
     "author": "",
     "commands": [
         {
@@ -86,28 +86,10 @@
             ]
         },
         {
-            "name": "GetFileDetails",
-            "label": "GetFileDetails",
-            "description": "Get File Details",
-            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.GetFileFolderDetailsCommand",
-            "icon": "pkg.svg",
-            "returnType": "DICTIONARY",
-            "returnSubtype": "UNDEFINED",
-            "returnLabel": "",
-            "returnRequired": true,
-            "attributes": [
-                {
-                    "name": "file",
-                    "label": "Path",
-                    "type": "FILE"
-                }
-            ]
-        },
-        {
             "name": "GetFilesFromPath",
             "label": "GetFilesFromPath",
             "description": "Esta action captura os arquivos de uma pasta",
-            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.GetFilesFromPathCommand",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.GetAllFromPathCommand",
             "icon": "pkg.svg",
             "returnType": "TABLE",
             "returnSubtype": "UNDEFINED",
@@ -132,6 +114,24 @@
                         "string": ".*",
                         "type": "STRING"
                     }
+                }
+            ]
+        },
+        {
+            "name": "GetFileDetails",
+            "label": "GetFileDetails",
+            "description": "Get File Details",
+            "mainClass": "com.automationanywhere.botcommand.samples.commands.basic.GetFileFolderDetailsCommand",
+            "icon": "pkg.svg",
+            "returnType": "DICTIONARY",
+            "returnSubtype": "UNDEFINED",
+            "returnLabel": "",
+            "returnRequired": true,
+            "attributes": [
+                {
+                    "name": "file",
+                    "label": "Path",
+                    "type": "FILE"
                 }
             ]
         },
