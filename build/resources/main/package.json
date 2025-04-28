@@ -4,8 +4,8 @@
     "description": "",
     "group": "com.automationanywhere",
     "artifactName": "File_Uts",
-    "packageVersion": "2.4-20250428-140100",
-    "codeVersion": "2.4-20250428-140100",
+    "packageVersion": "2.4-20250428-140636",
+    "codeVersion": "2.4-20250428-140636",
     "author": "",
     "commands": [
         {
@@ -81,17 +81,32 @@
                 {
                     "name": "from",
                     "label": "From",
-                    "type": "NUMBER"
+                    "type": "NUMBER",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
                 },
                 {
                     "name": "to",
                     "label": "To",
-                    "type": "NUMBER"
+                    "type": "NUMBER",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
                 },
                 {
                     "name": "clearEmptyLines",
                     "label": "Igorar Linhas em branco",
-                    "type": "BOOLEAN"
+                    "type": "BOOLEAN",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
                 }
             ]
         },

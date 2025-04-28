@@ -52,6 +52,9 @@ public final class DeleteRowsCommand implements BotCommand {
         throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","from", "Double", parameters.get("from").get().getClass().getSimpleName()));
       }
     }
+    if(convertedParameters.get("from") == null) {
+      throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","from"));
+    }
 
     if(parameters.containsKey("to") && parameters.get("to") != null && parameters.get("to").get() != null) {
       convertedParameters.put("to", parameters.get("to").get());
@@ -59,12 +62,18 @@ public final class DeleteRowsCommand implements BotCommand {
         throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","to", "Double", parameters.get("to").get().getClass().getSimpleName()));
       }
     }
+    if(convertedParameters.get("to") == null) {
+      throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","to"));
+    }
 
     if(parameters.containsKey("clearEmptyLines") && parameters.get("clearEmptyLines") != null && parameters.get("clearEmptyLines").get() != null) {
       convertedParameters.put("clearEmptyLines", parameters.get("clearEmptyLines").get());
       if(convertedParameters.get("clearEmptyLines") !=null && !(convertedParameters.get("clearEmptyLines") instanceof Boolean)) {
         throw new BotCommandException(MESSAGES_GENERIC.getString("generic.UnexpectedTypeReceived","clearEmptyLines", "Boolean", parameters.get("clearEmptyLines").get().getClass().getSimpleName()));
       }
+    }
+    if(convertedParameters.get("clearEmptyLines") == null) {
+      throw new BotCommandException(MESSAGES_GENERIC.getString("generic.validation.notEmpty","clearEmptyLines"));
     }
 
     try {
