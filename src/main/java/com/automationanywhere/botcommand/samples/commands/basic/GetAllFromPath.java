@@ -35,10 +35,10 @@ import static com.automationanywhere.commandsdk.model.AttributeType.TEXT;
 import static com.automationanywhere.commandsdk.model.DataType.*;
 
 @BotCommand
-@CommandPkg(label = "GetFilesFromPath",
+@CommandPkg(label = "GetAllFromPath",
         description = "Esta action captura os arquivos de uma pasta",
         icon = "pkg.svg",
-        name = "GetFilesFromPath",
+        name = "GetAllFromPath",
         return_description = "",
         return_type = TABLE,
         return_required = true
