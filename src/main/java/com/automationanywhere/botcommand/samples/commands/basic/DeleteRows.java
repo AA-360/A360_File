@@ -38,12 +38,15 @@ public class DeleteRows {
             @NotEmpty String Arquivo,
             @Idx(index = "2", type = NUMBER)
             @Pkg(label = "From")
+            @NotEmpty
             Double from,
             @Idx(index = "3", type = NUMBER)
             @Pkg(label = "To")
+            @NotEmpty
             Double to,
             @Idx(index = "4", type = BOOLEAN)
             @Pkg(label = "Igorar Linhas em branco")
+            @NotEmpty
             Boolean clearEmptyLines
     ) {
         File fl = new File();
